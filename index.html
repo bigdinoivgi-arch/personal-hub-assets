@@ -25,18 +25,11 @@ body{
   box-shadow:0 24px 60px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.16)}
 h1{margin:22px 0 6px;font-size:27px}
 p{margin:0;color:#d7c3a6;font-size:14px}
-.open-btn{
-  margin-top:28px;border:1px solid #d79d3c;border-radius:15px;padding:14px 20px;
-  background:#f3b94f;color:#332515;font-weight:750;font-size:16px;
-  box-shadow:0 12px 28px rgba(0,0,0,.24)
+.hold{
+  margin-top:28px;padding:12px 16px;border:1px solid rgba(224,184,111,.34);
+  border-radius:999px;background:rgba(29,23,18,.52);color:#efd9b7;font-size:12px
 }
-.hint{margin-top:18px;color:#bba78c;font-size:12px;line-height:1.6}
-.dots{display:none;justify-content:center;gap:7px;margin-top:28px;direction:ltr}
-.dots.show{display:flex}
-.dots i{width:7px;height:7px;border-radius:50%;background:#e0ad59;animation:dot 1s ease-in-out infinite}
-.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
-@keyframes dot{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-5px)}}
-@media(prefers-reduced-motion:reduce){.dots i{animation:none}}
+.hint{margin-top:16px;color:#bba78c;font-size:12px;line-height:1.7}
 </style>
 </head>
 <body>
@@ -44,36 +37,8 @@ p{margin:0;color:#d7c3a6;font-size:14px}
   <img class="logo" src="./logo.png" alt="">
   <h1>נתנאל איבגי</h1>
   <p>המרחב האישי שלי</p>
-
-  <button id="openBtn" class="open-btn" type="button">פתח את המרחב</button>
-  <div id="hint" class="hint">כדי להתקין: שתף → הוסף למסך הבית</div>
-  <div id="dots" class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hold">מצב התקנה</div>
+  <div class="hint">כעת: שתף → הוסף למסך הבית</div>
 </main>
-
-<script>
-const APP_URL = "https://script.google.com/macros/s/AKfycbzKoTQD51B0KWn3yHHnBgDSX_2ZItqXPq-RrtP9uPgEN33LAi2jF7U1_FimwN7nxFgu/exec";
-const isStandalone =
-  (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
-  window.navigator.standalone === true;
-
-function openApp() {
-  document.getElementById('openBtn').style.display = 'none';
-  document.getElementById('hint').style.display = 'none';
-  document.getElementById('dots').classList.add('show');
-  setTimeout(() => window.location.replace(APP_URL), 250);
-}
-
-document.getElementById('openBtn').addEventListener('click', openApp);
-
-/* Important:
-   In Safari/browser mode we DO NOT auto-redirect.
-   This keeps the GitHub Pages URL active so Add to Home Screen
-   installs the PWA with the correct name and icon.
-   Only an installed standalone web app auto-opens Apps Script.
-*/
-if (isStandalone) {
-  setTimeout(openApp, 650);
-}
-</script>
 </body>
 </html>
